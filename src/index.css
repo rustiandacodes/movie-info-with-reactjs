@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-slate-400;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.navside-anchor {
+  @apply font-semibold text-white hover:opacity-60;
+}

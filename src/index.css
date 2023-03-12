@@ -9,13 +9,31 @@
   }
 }
 
-.navside-anchor {
-  @apply font-semibold text-white hover:opacity-60;
-}
-.views-conrtainer {
-  @apply container mx-auto w-full p-8 bg-black-for-content h-screen overflow-scroll;
-}
+@layer utilities {
+  .navside-anchor {
+    @apply font-semibold text-white hover:opacity-60;
+  }
+  .views-conrtainer {
+    @apply container mx-auto w-full p-8 bg-black-for-content h-screen overflow-scroll;
+  }
 
-.shadow {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  .swiper-pagination-bullet-active {
+    background-color: #dc2626 !important;
+  }
+
+  .shadow {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .gradient {
+    background-image: linear-gradient(
+      to left,
+      rgba(7, 7, 7, 0),
+      rgba(7, 7, 7, 8)
+    );
+  }
+
+  .title {
+    @apply mt-10 mb-6 text-white font-semibold text-sm;
+  }
 }

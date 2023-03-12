@@ -27,7 +27,7 @@ const TrendingMovies = (props) => {
 
   return (
     <div className="md:my-10 md:px-10 px-5">
-      <p className="mb-5 font-semibold">On Trending</p>
+      <p className="title">On Trending</p>
       <div className="container mx-auto flex flex-wrap justify-between">
         {movies.map((movie) => {
           return (

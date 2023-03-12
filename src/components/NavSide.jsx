@@ -16,7 +16,7 @@ const NavSide = (props) => {
     <nav
       className={`${
         props.navsideOnMobile === false ? 'hidden md:block' : 'absolute shadow'
-      } bg-black-darker h-screen md:w-1/4 w-[80%] p-8 overflow-scroll`}
+      } bg-black-darker h-screen md:w-1/4 w-[80%] p-8 overflow-scroll z-[99]`}
     >
       <div className="flex justify-between">
         <div className="flex-row">

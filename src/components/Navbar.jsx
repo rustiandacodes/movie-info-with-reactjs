@@ -18,7 +18,7 @@ const Navbar = (props) => {
   const [closeSearch, setCloseSearch] = useState(false)
 
   return (
-    <div className="container mx-auto flex items-center justify-between py-3 md:px-8">
+    <div className="container mx-auto flex gap-5 items-center justify-between py-3 md:px-8">
       {/* navbar on mobile */}
       <RxHamburgerMenu
         className="text-2xl cursor-pointer md:hidden"
@@ -38,7 +38,7 @@ const Navbar = (props) => {
       <div
         className={`${
           closeSearch === false ? 'hidden' : ''
-        } absolute p-7 top-0 left-0 w-full bg-black-for-content h-full md:hidden`}
+        } absolute p-7 top-0 left-0 w-full bg-black-for-content z-[99] h-full md:hidden`}
       >
         <div className="flex items-center gap-8 px-3 mx-auto">
           <AiOutlineArrowLeft

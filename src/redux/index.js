@@ -3,6 +3,8 @@ const globalState = {
   homeIcon: true,
   watchlistIcon: false,
   discoverIcon: false,
+  navsideMobile: false,
+  keyword: '',
 }
 
 const rootReducer = (state = globalState, action) => {
@@ -29,6 +31,24 @@ const rootReducer = (state = globalState, action) => {
       homeIcon: false,
       watchlistIcon: false,
       discoverIcon: true,
+    }
+  }
+  if (action.type === 'CHANGE_NAVSIDE_TRUE') {
+    return {
+      ...state,
+      navsideMobile: true,
+    }
+  }
+  if (action.type === 'CHANGE_NAVSIDE_FALSE') {
+    return {
+      ...state,
+      navsideMobile: false,
+    }
+  }
+  if (action.type === 'ADD_KEYWORD') {
+    return {
+      ...state,
+      keyword: action.keyword,
     }
   }
   return state

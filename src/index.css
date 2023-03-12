@@ -4,11 +4,15 @@
 
 @layer base {
   body {
-    @apply text-slate-400;
+    @apply text-slate-400 bg-black-for-content;
     font-family: 'Poppins', sans-serif;
   }
 }
 
 .navside-anchor {
   @apply font-semibold text-white hover:opacity-60;
+}
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

@@ -8,14 +8,33 @@ import { connect } from 'react-redux'
 import { AiFillHome } from 'react-icons/ai'
 import { AiFillHeart } from 'react-icons/ai'
 import { AiFillCompass } from 'react-icons/ai'
+import { IoMdClose } from 'react-icons/io'
 
 const NavSide = (props) => {
-  console.log(props)
   return (
-    <nav className="bg-black-darker h-screen w-1/4 p-8 overflow-scroll hidden md:block">
-      <h2 className="text-white text-2xl font-extrabold uppercase">
-        rustianda <span className="text-red-600">movies</span>
-      </h2>
+    // hidden md:block
+    <nav
+      className={`${
+        props.navsideOnMobile === false ? 'hidden md:block' : 'absolute shadow'
+      } bg-black-darker h-screen md:w-1/4 w-[80%] p-8 overflow-scroll`}
+    >
+      <div className="flex justify-between">
+        <div className="flex-row">
+          <h2 className="text-white text-2xl font-extrabold uppercase">
+            rustianda
+          </h2>
+          <h2 className="text-red-600 text-2xl font-extrabold uppercase">
+            movies
+          </h2>
+        </div>
+        <IoMdClose
+          className={`${
+            props.navsideOnMobile === false ? 'hidden' : ''
+          } text-2xl cursor-pointer`}
+          onClick={props.handleNavsideFalse}
+        />
+      </div>
+
       <div className="pt-12 pb-5 border-b-[2px] border-b-black-for-card">
         {/* news feed nav */}
         <h4 className="pb-5">News Feed</h4>
@@ -87,6 +106,7 @@ const mapStateToProps = (state) => {
     home: state.homeIcon,
     watchlist: state.watchlistIcon,
     discover: state.discoverIcon,
+    navsideOnMobile: state.navsideMobile,
   }
 }
 
@@ -96,6 +116,7 @@ const mapDispatchToProps = (dispatch) => {
     handleWatchListIcon: () =>
       dispatch({ type: 'CHANGE_WATCHLIST_ICON_COLOR' }),
     handleDiscoverIcon: () => dispatch({ type: 'CHANGE_DISCOVER_ICON_COLOR' }),
+    handleNavsideFalse: () => dispatch({ type: 'CHANGE_NAVSIDE_FALSE' }),
   }
 }
 

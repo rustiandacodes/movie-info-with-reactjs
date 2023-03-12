@@ -12,6 +12,9 @@
 .navside-anchor {
   @apply font-semibold text-white hover:opacity-60;
 }
+.views-conrtainer {
+  @apply container mx-auto w-full p-8 bg-black-for-content h-screen overflow-scroll;
+}
 
 .shadow {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

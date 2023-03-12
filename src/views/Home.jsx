@@ -1,10 +1,10 @@
 import Navbar from '../components/Navbar'
-console.log(process.env.REACT_APP_BASEURL)
-console.log(process.env.REACT_APP_APIKEY)
+import TrendingMovies from '../components/TrendingMovie'
 const Home = () => {
   return (
-    <div className="container mx-auto w-full p-8 bg-black-for-content">
+    <div className="container mx-auto w-full p-8 bg-black-for-content h-screen overflow-scroll">
       <Navbar />
+      <TrendingMovies />
     </div>
   )
 }

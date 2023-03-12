@@ -5,7 +5,7 @@ const App = () => {
   return (
     <div className="flex justify-between">
       <NavSide />
-      <Router className="h-screen" />
+      <Router />
     </div>
   )
 }

@@ -13,6 +13,7 @@ import { useState } from 'react'
 // import state management connect
 import { connect } from 'react-redux'
 
+// main components
 const Navbar = (props) => {
   const [closeSearch, setCloseSearch] = useState(false)
 

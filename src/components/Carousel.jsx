@@ -16,16 +16,17 @@ const Carousel = () => {
   }, [])
 
   return (
-    <div className="overflow-hidden relative">
-      <div className="flex gap-5">
-        {nowPlaying.map((movie) => {
-          return (
-            <div className="max-w-[1050px]">
-              <div key={movie.title} className="">
-                <div className="container mx-auto cursor-pointer bg-black-darker rounded-xl">
+    <div className="md:px-10">
+      <p className="title ">Now Playing</p>
+      <div className="overflow-hidden relative">
+        <div className="flex">
+          {nowPlaying.map((movie) => {
+            return (
+              <div key={movie.title}>
+                <div className="w-[1100px] mx-auto cursor-pointer bg-black-darker rounded-xl">
                   <div className="flex justify-between items-center">
-                    <div className="px-10 w-[40%] hidden sm:block">
-                      <h2 className="lg:text-3xl text-2xl text-white font-bold truncate">
+                    <div className="px-10 w-[40%] hidden md:block">
+                      <h2 className="md:text-3xl text-2xl text-white font-bold truncate">
                         {movie.title}
                       </h2>
                       <p className="mt-3 h-16 overflow-hidden text-sm hidden lg:block">
@@ -85,7 +86,7 @@ const Carousel = () => {
                         </button>
                       </div>
                       <img
-                        className="w-full rounded-lg "
+                        className="rounded-xl"
                         src={`${process.env.REACT_APP_BASEIMGURL}${movie.backdrop_path}`}
                         alt="ready-player-one"
                       />
@@ -93,9 +94,9 @@ const Carousel = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     </div>
   )

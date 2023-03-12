@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar'
 import TrendingMovies from '../components/TrendingMovie'
 import Hero from '../components/Hero'
+import Carousel from '../components/Carousel'
 
 // main content
 const Home = () => {

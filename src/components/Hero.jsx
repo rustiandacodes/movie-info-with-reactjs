@@ -10,7 +10,8 @@ import { getNowPlaying } from '../services/ApiServices'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Import Swiper styles
-import 'swiper/css'
+import 'swiper/swiper.css'
+import 'swiper/swiper-bundle.min.css'
 import 'swiper/css/pagination'
 
 // import required modules
@@ -29,19 +30,19 @@ const Hero = (props) => {
     <>
       <div className="md:px-10">
         <p className="title ">Now Playing</p>
-        {nowPlaying.map((movie) => {
-          return (
-            <Swiper
-              pagination={true}
-              modules={[Pagination, Autoplay]}
-              spaceBetween={20}
-              loop={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              className="mySwiper max-w-[1050px]"
-            >
+        <Swiper
+          pagination={true}
+          modules={[Pagination, Autoplay]}
+          spaceBetween={20}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          className="mySwiper max-w-[1050px]"
+        >
+          {nowPlaying.map((movie) => {
+            return (
               <SwiperSlide key={movie.title}>
                 <div className="container mx-auto cursor-pointer bg-black-darker rounded-xl">
                   <div className="flex justify-between items-center">
@@ -114,9 +115,9 @@ const Hero = (props) => {
                   </div>
                 </div>
               </SwiperSlide>
-            </Swiper>
-          )
-        })}
+            )
+          })}
+        </Swiper>
       </div>
     </>
   )

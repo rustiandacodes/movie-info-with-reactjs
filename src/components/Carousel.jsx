@@ -6,17 +6,7 @@ import { useState, useEffect } from 'react'
 // import data from api
 import { getNowPlaying } from '../services/ApiServices'
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react'
-
-// Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/pagination'
-
-// import required modules
-import { Pagination, Autoplay } from 'swiper'
-
-const Hero = (props) => {
+const Carousel = () => {
   const [nowPlaying, setNowPlaying] = useState([])
 
   useEffect(() => {
@@ -26,23 +16,12 @@ const Hero = (props) => {
   }, [])
 
   return (
-    <>
-      <div className="md:px-10">
-        <p className="title ">Now Playing</p>
+    <div className="overflow-hidden relative">
+      <div className="flex gap-5">
         {nowPlaying.map((movie) => {
           return (
-            <Swiper
-              pagination={true}
-              modules={[Pagination, Autoplay]}
-              spaceBetween={20}
-              loop={true}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              className="mySwiper max-w-[1050px]"
-            >
-              <SwiperSlide key={movie.title}>
+            <div className="max-w-[1050px]">
+              <div key={movie.title} className="">
                 <div className="container mx-auto cursor-pointer bg-black-darker rounded-xl">
                   <div className="flex justify-between items-center">
                     <div className="px-10 w-[40%] hidden sm:block">
@@ -113,13 +92,13 @@ const Hero = (props) => {
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
-            </Swiper>
+              </div>
+            </div>
           )
         })}
       </div>
-    </>
+    </div>
   )
 }
 
-export default Hero
+export default Carousel

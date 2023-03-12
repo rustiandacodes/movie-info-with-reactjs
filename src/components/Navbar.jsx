@@ -24,9 +24,12 @@ const Navbar = (props) => {
         className="text-2xl cursor-pointer md:hidden"
         onClick={props.handleNavsideTrue}
       />
-      <div className="text-center md:hidden">
+      <div className="text-center flex-row justify-center md:hidden">
         <h4 className="uppercase font-extrabold text-white text-2xl">
-          rustianda <span className="text-red-600">movies</span>
+          rustianda
+        </h4>
+        <h4 className="uppercase font-extrabold text-red-600 text-2xl">
+          movies
         </h4>
       </div>
       <FiSearch

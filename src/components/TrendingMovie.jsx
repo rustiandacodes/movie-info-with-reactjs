@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react'
 import { getTrendingMovies } from '../services/ApiServices'
 import { AiFillStar } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
+import { connect } from 'react-redux'
+import ActionType from '../redux/globalActionType'
 
 const TrendingMovies = (props) => {
   const [movies, setMovies] = useState([])
   const [num, setNum] = useState(1)
+  const navigate = useNavigate()
   const numberForPages = []
+
+  const handleNavigate = (id = props.detailMovie.id) => {
+    navigate(`/detailmovie/${id}`)
+  }
 
   // number for pages value
   for (let i = 1; i < 6; i++) {
@@ -34,6 +42,10 @@ const TrendingMovies = (props) => {
             <div
               className="w-1/2 lg:w-1/5 md:w-1/4 sm:w-1/3 p-2 cursor-pointer overflow-hidden hover:scale-110 hover:duration-300 hover:z-40 group relative"
               key={movie.id}
+              onClick={() => {
+                props.handleMovie(movie)
+                handleNavigate()
+              }}
             >
               <div className="absolute right-3 p-2 flex gap-1 items-center">
                 <AiFillStar className="text-yellow-500 shadow-lg" />
@@ -81,4 +93,17 @@ const TrendingMovies = (props) => {
   )
 }
 
-export default TrendingMovies
+const mapStateToProps = (state) => {
+  return {
+    detailMovie: state.detailMovie,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleMovie: (detailMovie) =>
+      dispatch({ type: ActionType.ADD_DETAIL_MOVIE, detailMovie: detailMovie }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TrendingMovies)

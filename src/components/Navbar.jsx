@@ -12,6 +12,7 @@ import { useState } from 'react'
 
 // import state management connect
 import { connect } from 'react-redux'
+import ActionType from '../redux/globalActionType'
 
 // main components
 const Navbar = (props) => {
@@ -46,7 +47,10 @@ const Navbar = (props) => {
         <div className="flex items-center gap-8 px-3 mx-auto">
           <AiOutlineArrowLeft
             className="text-2xl cursor-pointer font-bold"
-            onClick={() => setCloseSearch(false)}
+            onClick={() => {
+              setCloseSearch(false)
+              props.handleDiscoverMovieList(['cobain'])
+            }}
           />
           <div className="px-5 py-3 shadow rounded-lg flex justify-between w-full">
             <input
@@ -111,13 +115,20 @@ const Navbar = (props) => {
 const mapStateToProps = (state) => {
   return {
     keyword: state.keyword,
+    discover: state.discover,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleNavsideTrue: () => dispatch({ type: 'CHANGE_NAVSIDE_TRUE' }),
-    handleKeyword: (words) => dispatch({ type: 'ADD_KEYWORD', keyword: words }),
+    handleNavsideTrue: () => dispatch({ type: ActionType.CHANGE_NAVSIDE_TRUE }),
+    handleKeyword: (words) =>
+      dispatch({ type: ActionType.ADD_KEYWORD, keyword: words }),
+    handleDiscoverMovieList: (movies) =>
+      dispatch({
+        type: ActionType.ADD_DISCOVER_MOVIELIST,
+        discover: movies,
+      }),
   }
 }
 

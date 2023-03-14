@@ -56,6 +56,12 @@ export const getTrailer = async (id) => {
   const trailer = await axios.get(
     `${baseUrl}/movie/${id}/videos?api_key=${apiKey}&append_to_response=videos`,
   )
-
   return trailer
+}
+
+export const getDetail = async (id) => {
+  const detailMovie = await axios.get(
+    `${baseUrl}/movie/${id}?api_key=${apiKey}`,
+  )
+  return detailMovie.data
 }

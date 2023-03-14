@@ -9,16 +9,16 @@
   }
 }
 
+.swiper-pagination-bullet-active {
+  background-color: #dc2626 !important;
+}
+
 @layer utilities {
   .navside-anchor {
     @apply font-semibold text-white hover:opacity-60;
   }
   .views-conrtainer {
     @apply container mx-auto w-full p-8 bg-black-for-content h-screen overflow-scroll;
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: #dc2626 !important;
   }
 
   .shadow {

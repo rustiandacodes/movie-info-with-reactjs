@@ -32,6 +32,7 @@ const globalState = {
     { id: 37, name: 'Western' },
   ],
   selectedGenre: 'All',
+  movieResults: [],
 }
 
 const rootReducer = (state = globalState, action) => {
@@ -96,6 +97,12 @@ const rootReducer = (state = globalState, action) => {
       return {
         ...state,
         discover: action.discover,
+      }
+
+    case ActionType.ADD_MOVIE_RESULTS:
+      return {
+        ...state,
+        movieResults: action.movieResults,
       }
 
     default:

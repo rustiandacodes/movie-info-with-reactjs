@@ -259,7 +259,6 @@ const mapStateToProps = (state) => {
   return {
     keyword: state.keyword,
     discover: state.discover,
-    movieResults: state.movieResults,
     detailMovie: state.detailMovie,
     movieResults: state.movieResults,
   }
@@ -275,10 +274,6 @@ const mapDispatchToProps = (dispatch) => {
         type: ActionType.ADD_DISCOVER_MOVIELIST,
         discover: movies,
       }),
-    handleMovieResults: (result) => ({
-      type: ActionType.ADD_MOVIE_RESULTS,
-      movieResults: result,
-    }),
     handleMovie: (detailMovie) =>
       dispatch({ type: ActionType.ADD_DETAIL_MOVIE, detailMovie: detailMovie }),
     handleMovieResults: (results) =>

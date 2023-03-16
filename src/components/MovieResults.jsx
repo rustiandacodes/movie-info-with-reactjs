@@ -3,9 +3,7 @@ import { AiFillStar } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ActionType from '../redux/globalActionType'
-
 import { searchMovie } from '../services/ApiServices'
-
 import posterBroken from '../errors/poster-broken.png'
 
 const MovieResults = (props) => {

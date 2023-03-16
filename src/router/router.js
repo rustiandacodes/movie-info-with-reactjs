@@ -7,6 +7,7 @@ import Watchlist from '../views/Watchlist'
 import Discover from '../views/Discover'
 import Detail from '../views/Detail'
 import Results from '../views/Results'
+import NotFound from '../errors/NotFound'
 
 // Router or path to render by url
 const Router = () => {
@@ -16,6 +17,7 @@ const Router = () => {
       <Route path="/watchlist" element={<Watchlist />}></Route>
       <Route path="/discover" element={<Discover />}></Route>
       <Route path="/results" element={<Results />}></Route>
+      <Route path="*" element={<NotFound />}></Route>
       <Route path="/detailmovie/:identifier" element={<Detail />}></Route>
     </Routes>
   )

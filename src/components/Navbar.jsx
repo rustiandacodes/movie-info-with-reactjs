@@ -91,6 +91,14 @@ const Navbar = (props) => {
                 props.handleKeyword(target.value)
                 setLocalKeyword(target.value)
               }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  props.handleKeyword(localKeyword)
+                  props.handleMovieResults(movies)
+                  handleNavigateToResults()
+                  setLocalKeyword('')
+                }
+              }}
             />
             <IoMdClose
               className={`${
@@ -143,6 +151,7 @@ const Navbar = (props) => {
                   handleNavigateToResults()
                   setLocalKeyword('')
                 }}
+                onK
               >
                 <p
                   className={`${
@@ -170,6 +179,14 @@ const Navbar = (props) => {
             search(target.value)
             props.handleKeyword(target.value)
             setLocalKeyword(target.value)
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              props.handleKeyword(localKeyword)
+              props.handleMovieResults(movies)
+              handleNavigateToResults()
+              setLocalKeyword('')
+            }
           }}
         />
         <IoMdClose

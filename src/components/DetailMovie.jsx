@@ -29,7 +29,11 @@ const DetailMovie = (props) => {
 
     const videoTrailer = () => {
       if (trailer === undefined) {
-        return selected.results[0]
+        if (selected.results[0]) {
+          return selected.results[0]
+        } else {
+          return ''
+        }
       }
       return trailer
     }
@@ -45,8 +49,6 @@ const DetailMovie = (props) => {
     return genres.find(({ id }) => id === x)
   }
   const genreResult = movie.genre_ids.map((id) => findSpecificGenre(id))
-
-  console.log(genreResult)
 
   return (
     <div className="container mx-auto my-12 px-5">

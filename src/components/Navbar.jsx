@@ -151,7 +151,6 @@ const Navbar = (props) => {
                   handleNavigateToResults()
                   setLocalKeyword('')
                 }}
-                onK
               >
                 <p
                   className={`${

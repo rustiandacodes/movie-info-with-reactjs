@@ -12,7 +12,7 @@ const DiscoverContent = (props) => {
   const navigate = useNavigate()
   const genres = props.genres
 
-  const handleNavigate = (id = props.detailMovie.id) => {
+  const handleNavigate = (id) => {
     navigate(`/detailmovie/${id}`)
   }
 
@@ -79,8 +79,7 @@ const DiscoverContent = (props) => {
               className="w-1/2 lg:w-1/5 md:w-1/4 sm:w-1/3 p-2 cursor-pointer overflow-hidden hover:scale-110 hover:duration-300 hover:z-40 group relative"
               key={movie.id}
               onClick={() => {
-                props.handleMovie(movie)
-                handleNavigate()
+                handleNavigate(movie.id)
               }}
             >
               <div className="absolute right-3 p-2 flex gap-1 items-center">

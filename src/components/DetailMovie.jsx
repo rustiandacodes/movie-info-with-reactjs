@@ -7,20 +7,30 @@ import { IoMdCopy } from 'react-icons/io'
 import { connect } from 'react-redux'
 import { useState, useEffect } from 'react'
 
-import { getTrailer } from '../services/ApiServices'
+import { getTrailer, getDetail } from '../services/ApiServices'
 import YouTube from 'react-youtube'
+import { useParams } from 'react-router-dom'
 
 const DetailMovie = (props) => {
-  const movie = props.detailMovie
-  const [selected, setSelected] = useState()
-  const genres = props.genres
+  const [movie, setMovie] = useState([])
+  const [selected, setSelected] = useState('')
+  const [genres, setGenres] = useState([])
   const [trailer, setTrailer] = useState(false)
+  const id = useParams('')
 
   useEffect(() => {
-    getTrailer(movie.id).then((result) => {
+    getTrailer(id.identifier).then((result) => {
       setSelected(result.data)
     })
-  }, [movie])
+  }, [])
+
+  useEffect(() => {
+    getDetail(id.identifier).then((result) => {
+      setMovie(result)
+    })
+  }, [])
+
+  console.log(movie.genres)
 
   const renderTrailer = (h = '200', w = '320') => {
     const trailer = selected.results.find(
@@ -45,10 +55,10 @@ const DetailMovie = (props) => {
     return <YouTube opts={opts} videoId={videoTrailer().key} />
   }
 
-  function findSpecificGenre(x) {
-    return genres.find(({ id }) => id === x)
-  }
-  const genreResult = movie.genre_ids.map((id) => findSpecificGenre(id))
+  // function findSpecificGenre(x) {
+  //   return genres.find(({ id }) => id === x)
+  // }
+  // const genreResult = movie.genre_ids.map((id) => findSpecificGenre(id))
 
   return (
     <div className="container mx-auto my-12 px-5">
@@ -97,16 +107,16 @@ const DetailMovie = (props) => {
             </div>
           </div>
           <div className="flex ml-2 mb-2 flex-wrap gap-2">
-            {genreResult.map((e) => {
+            {/* {movie.genres.map((genre) => {
               return (
-                <li className="text-sm mr-5" key={e.id}>
-                  {e.name}
+                <li className="text-sm mr-5" key={genre.id}>
+                  {genre.name}
                 </li>
               )
-            })}
+            })} */}
           </div>
-          <p className="text-sm">{movie.overview}</p>
 
+          <p className="text-sm">{movie.overview}</p>
           <div className="my-8 flex gap-10">
             <button
               className=" hidden md:block text-sm px-2 py- h-10 cursor-pointer bg-red-600 hover:bg-red-800 transition text-white font-semibold rounded-lg"

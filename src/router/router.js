@@ -17,8 +17,8 @@ const Router = () => {
       <Route path="/watchlist" element={<Watchlist />}></Route>
       <Route path="/discover" element={<Discover />}></Route>
       <Route path="/results" element={<Results />}></Route>
-      <Route path="*" element={<NotFound />}></Route>
       <Route path="/detailmovie/:identifier" element={<Detail />}></Route>
+      <Route path="*" element={<NotFound />}></Route>
     </Routes>
   )
 }

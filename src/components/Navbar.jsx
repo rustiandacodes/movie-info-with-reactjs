@@ -84,7 +84,7 @@ const Navbar = (props) => {
             <input
               type="text"
               className="bg-black-for-content w-full outline-none text-sm "
-              placeholder="search any movies ..."
+              placeholder="search any movie here ..."
               value={localKeyword}
               onChange={({ target }) => {
                 search(target.value)
@@ -157,7 +157,7 @@ const Navbar = (props) => {
                     props.keyword.length < 4 ? 'hidden' : 'block'
                   } text-center group-hover:text-white p-2 rounded-lg bg-black-for-card cursor-pointer`}
                 >
-                  see more results...
+                  see more result...
                 </p>
               </div>
             </div>
@@ -172,7 +172,7 @@ const Navbar = (props) => {
         <input
           type="text"
           className="bg-black-for-content w-full outline-none"
-          placeholder="search any movies ..."
+          placeholder="search any movie here ..."
           value={localKeyword}
           onChange={({ target }) => {
             search(target.value)
@@ -246,7 +246,7 @@ const Navbar = (props) => {
                 movies.length < 4 ? 'hidden' : 'block'
               } text-center group-hover:text-white p-2 rounded-lg bg-black-for-card cursor-pointer`}
             >
-              see more results...
+              see more result...
             </p>
           </div>
         </div>

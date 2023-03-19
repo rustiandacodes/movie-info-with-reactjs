@@ -14,23 +14,21 @@ import { useParams } from 'react-router-dom'
 const DetailMovie = (props) => {
   const [movie, setMovie] = useState([])
   const [selected, setSelected] = useState('')
-  const [genres, setGenres] = useState([])
   const [trailer, setTrailer] = useState(false)
-  const id = useParams('')
+  let id = useParams(1)
+  console.log(id)
 
   useEffect(() => {
     getTrailer(id.identifier).then((result) => {
       setSelected(result.data)
     })
-  }, [])
+  }, [id])
 
   useEffect(() => {
     getDetail(id.identifier).then((result) => {
       setMovie(result)
     })
-  }, [])
-
-  console.log(movie.genres)
+  }, [id])
 
   const renderTrailer = (h = '200', w = '320') => {
     const trailer = selected.results.find(

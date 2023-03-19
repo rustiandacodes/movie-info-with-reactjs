@@ -24,6 +24,9 @@
   .shadow {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+  .show-card {
+    @apply absolute text-white bottom-0 right-0 left-0 h-[80%] rounded-lg p-3 m-2 bg-gradient-to-t from-black to-black-for-card opacity-80 overflow-hidden translate-y-72 group-hover:-translate-y-0 group-hover:block group-hover:transition group-hover:duration-300 group-hover:ease-in-out;
+  }
 
   .gradient {
     background-image: linear-gradient(

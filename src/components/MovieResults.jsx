@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { AiFillStar } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -6,7 +5,6 @@ import ActionType from '../redux/globalActionType'
 import posterBroken from '../errors/poster-broken.png'
 
 const MovieResults = (props) => {
-  const [num, setNum] = useState(1)
   const navigate = useNavigate()
   const numberForPages = []
 

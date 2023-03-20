@@ -33,6 +33,8 @@ const globalState = {
   ],
   selectedGenre: 'All',
   movieResults: [],
+  moviePerPage: [],
+  pageNumber: 1,
 }
 
 const rootReducer = (state = globalState, action) => {
@@ -103,6 +105,16 @@ const rootReducer = (state = globalState, action) => {
       return {
         ...state,
         movieResults: action.movieResults,
+      }
+    case ActionType.ADD_MOVIE_PER_PAGE:
+      return {
+        ...state,
+        moviePerPage: action.moviePerPage,
+      }
+    case ActionType.CHANGE_PAGE_NUMBER:
+      return {
+        ...state,
+        pageNumber: action.pageNumber,
       }
 
     default:

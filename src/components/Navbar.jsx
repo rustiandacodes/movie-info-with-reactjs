@@ -26,14 +26,30 @@ const Navbar = (props) => {
   const [closeSearch, setCloseSearch] = useState(false)
   const [localKeyword, setLocalKeyword] = useState('')
   const [movies, setMovies] = useState([])
+  const [movies2, setMovies2] = useState([])
+  const [movies3, setMovies3] = useState([])
+  const [movies4, setMovies4] = useState([])
+  const [movies5, setMovies5] = useState([])
   const [onlyFiveMovie, setOnlyFiveMovie] = useState([])
   const navigate = useNavigate()
 
   const search = async (q) => {
     if (q.length > 3) {
-      const query = await searchMovie(1, q)
-      setMovies(query.results)
+      const movie = await searchMovie(1, q)
+      setMovies(movie.results)
+      props.handleMoviePerPage(movie.results)
+      const movie2 = await searchMovie(2, q)
+      setMovies2(movie2.results)
+      const movie3 = await searchMovie(3, q)
+      setMovies3(movie3.results)
+      const movie4 = await searchMovie(4, q)
+      setMovies4(movie4.results)
+      const movie5 = await searchMovie(5, q)
+      setMovies5(movie5.results)
     }
+    const movieAll = [].concat(movies, movies2, movies3, movies4, movies5)
+    setMovies(movieAll)
+
     const getFiveMovie = movies.splice(0, 5)
     setOnlyFiveMovie(getFiveMovie)
   }
@@ -95,6 +111,7 @@ const Navbar = (props) => {
                 if (e.key === 'Enter') {
                   props.handleKeyword(localKeyword)
                   props.handleMovieResults(movies)
+                  props.handlePageNumber(1)
                   handleNavigateToResults()
                   setLocalKeyword('')
                 }
@@ -147,6 +164,7 @@ const Navbar = (props) => {
                 className="px-2 pb-2 group"
                 onClick={() => {
                   props.handleMovieResults(movies)
+                  props.handlePageNumber(1)
                   setCloseSearch(false)
                   handleNavigateToResults()
                   setLocalKeyword('')
@@ -183,6 +201,7 @@ const Navbar = (props) => {
             if (e.key === 'Enter') {
               props.handleKeyword(localKeyword)
               props.handleMovieResults(movies)
+              props.handlePageNumber(1)
               handleNavigateToResults()
               setLocalKeyword('')
             }
@@ -237,6 +256,7 @@ const Navbar = (props) => {
             className="px-2 pb-2 group"
             onClick={() => {
               props.handleMovieResults(movies)
+              props.handlePageNumber(1)
               handleNavigateToResults()
               setLocalKeyword('')
             }}
@@ -296,6 +316,16 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: ActionType.ADD_MOVIE_RESULTS,
         movieResults: results,
+      }),
+    handleMoviePerPage: (results) =>
+      dispatch({
+        type: ActionType.ADD_MOVIE_PER_PAGE,
+        moviePerPage: results,
+      }),
+    handlePageNumber: (results) =>
+      dispatch({
+        type: ActionType.CHANGE_PAGE_NUMBER,
+        pageNumber: results,
       }),
   }
 }

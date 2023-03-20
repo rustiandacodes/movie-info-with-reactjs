@@ -3,7 +3,6 @@ import { AiFillStar } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ActionType from '../redux/globalActionType'
-import { searchMovie } from '../services/ApiServices'
 import posterBroken from '../errors/poster-broken.png'
 
 const MovieResults = (props) => {
@@ -11,25 +10,36 @@ const MovieResults = (props) => {
   const navigate = useNavigate()
   const numberForPages = []
 
+  const totalPage = props.movieResults.length / 20
+
   const handleNavigate = (id) => {
     navigate(`/detailmovie/${id}`)
   }
 
-  // number for pages value
-  for (let i = 1; i < 6; i++) {
+  // number for pagination
+  for (let i = 1; i < totalPage; i++) {
     numberForPages.push(i)
   }
 
-  const thisPage = async (page, keyword) => {
-    const query = await searchMovie(page, keyword)
-    return props.handleMovieResults(query.results)
+  // show movies by page
+  const thisPage = (page) => {
+    if (page === 1) {
+      const movies = props.movieResults.slice(0, 20)
+      props.handleMoviePerPage(movies)
+    } else {
+      const movies = props.movieResults.slice(page * 20, page * 20 + 20)
+      props.handleMoviePerPage(movies)
+    }
   }
+
+  // console log here
+  console.log(totalPage)
 
   return (
     <div className="md:my-10 md:px-10">
       <p className="title">Results</p>
       <div className="container mx-auto flex flex-wrap justify-between">
-        {props.movieResults.map((movie) => {
+        {props.moviePerPage.map((movie, index) => {
           const imageBroken = () => {
             if (movie.poster_path) {
               return `${process.env.REACT_APP_BASEIMGURL}${movie.poster_path}`
@@ -40,7 +50,7 @@ const MovieResults = (props) => {
           return (
             <div
               className="w-1/2 lg:w-1/5 md:w-1/4 sm:w-1/3 p-2 cursor-pointer overflow-hidden md:hover:scale-110 hover:duration-300 hover:z-40 group relative"
-              key={movie.id}
+              key={index}
               onClick={() => {
                 handleNavigate(movie.id)
               }}
@@ -68,17 +78,21 @@ const MovieResults = (props) => {
             </div>
           )
         })}
-        <div className="contaner mx-auto flex justify-center gap-5">
+        <div
+          className={`${
+            totalPage < 1 ? 'hidden' : 'block'
+          } container mx-auto flex justify-center gap-5`}
+        >
           {numberForPages.map((number) => {
             return (
               <div
                 className={`${
-                  num === number ? 'bg-black-for-content' : ''
+                  props.pageNumber === number ? 'bg-black-for-content' : ''
                 } my-16 text-white shadow w-10 h-10 flex justify-center items-center cursor-pointer bg-black-for-card rounded-md`}
                 key={number}
                 onClick={() => {
-                  setNum(number)
-                  thisPage(number, props.keyword)
+                  props.handlePageNumber(number)
+                  thisPage(number)
                 }}
               >
                 <p>{number}</p>
@@ -96,6 +110,8 @@ const mapStateToProps = (state) => {
     detailMovie: state.detailMovie,
     movieResults: state.movieResults,
     keyword: state.keyword,
+    moviePerPage: state.moviePerPage,
+    pageNumber: state.pageNumber,
   }
 }
 
@@ -107,6 +123,16 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: ActionType.ADD_MOVIE_RESULTS,
         movieResults: results,
+      }),
+    handleMoviePerPage: (results) =>
+      dispatch({
+        type: ActionType.ADD_MOVIE_PER_PAGE,
+        moviePerPage: results,
+      }),
+    handlePageNumber: (results) =>
+      dispatch({
+        type: ActionType.CHANGE_PAGE_NUMBER,
+        pageNumber: results,
       }),
   }
 }

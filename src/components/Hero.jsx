@@ -10,8 +10,9 @@ import { getNowPlaying } from '../services/ApiServices'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Import Swiper styles
-import 'swiper/css'
+import 'swiper/swiper.min.css'
 import 'swiper/css/pagination'
+import 'swiper/css/autoplay'
 
 // import required modules
 import { Pagination, Autoplay } from 'swiper'

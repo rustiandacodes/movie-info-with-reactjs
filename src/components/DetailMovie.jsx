@@ -16,7 +16,6 @@ const DetailMovie = (props) => {
   const [selected, setSelected] = useState('')
   const [trailer, setTrailer] = useState(false)
   let id = useParams(1)
-  console.log(id)
 
   useEffect(() => {
     getTrailer(id.identifier).then((result) => {
